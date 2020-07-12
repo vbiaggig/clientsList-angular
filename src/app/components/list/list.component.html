@@ -1,0 +1,59 @@
+<h1>Lista de clientes</h1>
+
+<div class="alert alert-dark" role="alert" *ngFor="let item of items">
+  <p><i class="fas fa-user"></i> Nombre: {{item.name}}</p>
+  <p><i class="fas fa-user"></i> Apellido: {{item.lastName}}</p>
+  <p><i class="fas fa-id-card"></i> Edad: {{item.age}}</p>
+  <p><i class="fas fa-birthday-cake"></i> Fecha de nacimiento: {{item.birthdate}}</p>
+  <p><i class="fas fa-skull-crossbones"></i> Fecha probable de muerte: {{item.deathProbability}}</p>
+
+  <div class="d-flex justify-content-center">
+    <a href="#" class="card-link" (click)="update(item)" data-toggle="modal" data-target="#modelId">
+      <i class="fas fa-pencil-alt"></i>
+      Editar
+    </a>
+    <a href="#" class="card-link text-danger" (click)="delete(item.id)">
+      <i class="far fa-trash-alt"></i>
+      Eliminar
+    </a>
+  </div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal(item)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form (ngSubmit)="updateForm()">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="">Nombre</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="editItem.name">
+          </div>
+          <div class="form-group">
+            <label for="">Apellido</label>
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="editItem.lastName">
+          </div>
+          <div class="form-group">
+            <label for="">Fecha de nacimiento</label>
+            <input type="date" class="form-control" name="birthdate" [(ngModel)]="editItem.birthdate">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

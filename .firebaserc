@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "clients-db-1c213": {
+      "hosting": {
+        "oeschle-challenge": [
+          "clients-db-1c213"
+        ]
+      }
+    }
+  }
+}
