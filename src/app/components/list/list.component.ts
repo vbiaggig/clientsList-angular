@@ -33,15 +33,19 @@ export class ListComponent implements OnInit {
   updateForm(): void {
     this.conn.getItems().subscribe(items => {
       const getItem = items.find((x: any) => x.id === this.editItem.id);
-      if (getItem.birthdate !== this.editItem.birthdate) {
-        this.editItem.age = this.getAge(this.editItem.birthdate);
-        this.editItem.deathProbability = this.deathProbability(this.editItem.birthdate);
-      }
-      this.conn.updateItem(this.editItem);
+      this.getData(getItem);
     });
   }
   closeModal(): void{
     this.getItem();
+  }
+
+  getData(getItem: any): void {
+    if (getItem.birthdate !== this.editItem.birthdate) {
+      this.editItem.age = this.getAge(this.editItem.birthdate);
+      this.editItem.deathProbability = this.deathProbability(this.editItem.birthdate);
+    }
+    this.conn.updateItem(this.editItem);
   }
 
   getAge(dateString: any): number {
